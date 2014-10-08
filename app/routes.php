@@ -12,3 +12,5 @@
 */
 
 Route::get('/', array('uses'=>'GraficaController@getIndex'));
+
+Route::resource('usuarios', 'UsuariosController');

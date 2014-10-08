@@ -348,7 +348,7 @@ class Guard {
 
 		// If an implementation of UserInterface was returned, we'll ask the provider
 		// to validate the user against the given credentials, and if they are in
-		// fact valid we'll log the users into the application and return true.
+		// fact valid we'll log the usuarios into the application and return true.
 		if ($this->hasValidCredentials($user, $credentials))
 		{
 			if ($login) $this->login($user, $remember);
@@ -416,7 +416,7 @@ class Guard {
 
 		// If the user should be permanently "remembered" by the application we will
 		// queue a permanent cookie that contains the encrypted copy of the user
-		// identifier. We will then decrypt this later to retrieve the users.
+		// identifier. We will then decrypt this later to retrieve the usuarios.
 		if ($remember)
 		{
 			$this->createRememberTokenIfDoesntExist($user);
@@ -525,7 +525,7 @@ class Guard {
 			$this->events->fire('auth.logout', array($user));
 		}
 
-		// Once we have fired the logout event we will clear the users out of memory
+		// Once we have fired the logout event we will clear the usuarios out of memory
 		// so they are no longer available as the user is no longer considered as
 		// being signed into this application and should not be available here.
 		$this->user = null;

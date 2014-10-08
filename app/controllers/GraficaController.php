@@ -1,9 +1,9 @@
 <?php
 
-class GraficaController extends \Illuminate\Routing\Controller
+class GraficaController extends Controller
 {
     public function getIndex()
     {
-        View::make('');
+        return View::make('home');
     }
 }

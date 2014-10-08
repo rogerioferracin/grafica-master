@@ -126,7 +126,7 @@ if (!function_exists('crypt_random_string')) {
         // however, a ton of people visiting the website. obviously you don't want to base your seeding
         // soley on parameters a potential attacker sends but (1) not everything in $_SERVER is controlled
         // by the user and (2) this isn't just looking at the data sent by the current user - it's based
-        // on the data sent by all users. one user requests the page and a hash of their info is saved.
+        // on the data sent by all usuarios. one user requests the page and a hash of their info is saved.
         // another user visits the page and the serialization of their data is utilized along with the
         // server envirnment stuff and a hash of the previous http request data (which itself utilizes
         // a hash of the session data before that). certainly an attacker should be assumed to have

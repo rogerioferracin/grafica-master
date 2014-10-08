@@ -7,7 +7,7 @@
  */
 
 /**
- * Utility Class allowing users to simply check expressions again Swift Grammar.
+ * Utility Class allowing usuarios to simply check expressions again Swift Grammar.
  *
  * @author  Xavier De Cock <xdecock@gmail.com>
  */

@@ -11,7 +11,7 @@
 /**
  * Sends Messages using the mail() function.
  *
- * It is advised that users do not use this transport if at all possible
+ * It is advised that usuarios do not use this transport if at all possible
  * since a number of plugin features cannot be used in conjunction with this
  * transport due to the internal interface in PHP itself.
  *

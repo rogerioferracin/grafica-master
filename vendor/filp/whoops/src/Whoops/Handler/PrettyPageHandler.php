@@ -100,7 +100,7 @@ class PrettyPageHandler extends Handler
             // @todo: Make this more robust
             if(php_sapi_name() === 'cli') {
 
-                // Help users who have been relying on an internal test value
+                // Help usuarios who have been relying on an internal test value
                 // fix their code to the proper method
                 if (isset($_ENV['whoops-test'])) {
                     throw new \Exception(

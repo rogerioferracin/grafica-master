@@ -20,7 +20,7 @@ class DatabaseUserProvider implements UserProviderInterface {
 	protected $hasher;
 
 	/**
-	 * The table containing the users.
+	 * The table containing the usuarios.
 	 *
 	 * @var string
 	 */
@@ -114,7 +114,7 @@ class DatabaseUserProvider implements UserProviderInterface {
 
 		// Now we are ready to execute the query to see if we have an user matching
 		// the given credentials. If not, we will just return nulls and indicate
-		// that there are no matching users for these given credential arrays.
+		// that there are no matching usuarios for these given credential arrays.
 		$user = $query->first();
 
 		if ( ! is_null($user))

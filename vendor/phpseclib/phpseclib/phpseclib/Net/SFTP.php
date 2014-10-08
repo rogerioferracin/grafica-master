@@ -1653,7 +1653,7 @@ class Net_SFTP extends Net_SSH2
         }
 
         $dir = $this->_realpath($dir);
-        // by not providing any permissions, hopefully the server will use the logged in users umask - their
+        // by not providing any permissions, hopefully the server will use the logged in usuarios umask - their
         // default permissions.
         $attr = $mode == -1 ? "\0\0\0\0" : pack('N2', NET_SFTP_ATTR_PERMISSIONS, $mode & 07777);
 

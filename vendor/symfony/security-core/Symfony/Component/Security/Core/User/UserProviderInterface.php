@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
  * method is asked to load the UserInterface object for the given username
  * (via loadUserByUsername) so that the rest of the process can continue.
  *
- * Internally, a user provider can load users from any source (databases,
+ * Internally, a user provider can load usuarios from any source (databases,
  * configuration, web service). This is totally independent of how the authentication
  * information is submitted or what the UserInterface object looks like.
  *
@@ -55,7 +55,7 @@ interface UserProviderInterface
      *
      * It is up to the implementation to decide if the user data should be
      * totally reloaded (e.g. from the database), or if the UserInterface
-     * object can just be merged into some internal array of users / identity
+     * object can just be merged into some internal array of usuarios / identity
      * map.
      * @param UserInterface $user
      *

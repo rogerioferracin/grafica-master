@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 /**
- * UserProviderInterface retrieves users for UsernamePasswordToken tokens.
+ * UserProviderInterface retrieves usuarios for UsernamePasswordToken tokens.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
