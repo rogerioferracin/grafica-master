@@ -7,3 +7,19 @@
     font-size: 0.9em;
     background-color: #777;
 }
+
+.bg-lightGray {
+    background-color: #dddddd;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+.table thead {
+    background-color: #e7b92c;!important;
+}
+
+.table tr:nth-of-type(even) {
+    background: #EEE;!important;
+}

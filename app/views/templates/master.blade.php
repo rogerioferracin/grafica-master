@@ -7,51 +7,80 @@
     <link rel="shortcut icon" href="{{ URL::to('/assets/images/favicon.ico') }}" />
 
     {{--CSS Links--}}
-    {{ HTML::style('/assets/css/metro-bootstrap.min.css') }}
-    {{ HTML::style('/assets/css/metro-bootstrap-responsive.min.css') }}
-    {{ HTML::style('/assets/css/iconFont.min.css') }}
+    {{ HTML::style('/assets/css/normalize.css') }}
+    {{ HTML::style('/assets/css/foundation.min.css') }}
+    {{ HTML::style('/assets/css/foundation-icons.css') }}
+    {{ HTML::style('/assets/css/responsive-tables.css') }}
+    {{ HTML::style('/assets/css/dataTables.foundation.css') }}
     {{ HTML::style('/assets/css/custom.css') }}
+
 </head>
 
-<body class="metro">
-<div class="wrapper" style="width: 950px; margin: 0 auto">
-    <div class="">
-        <div class="grid">
-            <h1>Gráfica Master</h1>
-        </div>
-    </div>
+<body>
 
-    <div class="">
-        <div class="grid fluid">
+
+        <div class="row">
+            <div class="large-2 columns">
+                {{HTML::image('/assets/images/grafica-logo-200.jpg', 'Sistema Gerenciamento para Gráficas', array('class'=>'img-responsive'))}}
+            </div>
+            <div class="large-10 columns">
+                <h2>Sistema de Gerenciamento para Gráficas</h2>
+            </div>
+        </div>
+
+
+    <div id="main-menu">
+        <div class="row">
             @include('templates.main-menu')
         </div>
     </div>
 
-    <div class="">
-        <div class="grid fluid">
-            @yield('content')
+    @if(Session::has('message'))
+    <div class="row" id="message">
+        <div class="large-1 columns">
+            <i class="fi-info" style="font-size: 2.2em; color: #4528b2"></i>
         </div>
-    </div>
-
-    <div class="">
-        <div class="grid">
-            <div class="row">
-                <div class="span1">
-                    {{ HTML::image('/assets/images/grafica-logo-100-muted.jpg', 'Logotipo do sistema - rodapé' ,array('class' => 'shadow')) }}
-                </div>
-                <div class="span10">
-                    <span class="text-muted">Sistema Gráfica - &copy;2014 - Todos os direitos reservados.</span>
-                </div>
-                <div class="span1">
-                    Ok
-                </div>
+        <div class="large-11 columns">
+            <div class="alert-box info" data-alert>
+                {{ Session::get('message') }}
+                <a href="#" class="close">&times;</a>
             </div>
         </div>
     </div>
-</div>
+    @endif
+
+    <div class="row" id="content">
+        @yield('content')
+    </div>
+
+    <hr>
+
+    <div class="row" id="footer">
+        <div class="large-2 columns">
+            {{ HTML::image('/assets/images/grafica-logo-100-muted.jpg', 'Logotipo do sistema - rodapé' ,array('class' => 'shadow')) }}
+        </div>
+        <div class="large-8 columns">
+            <span class="text-muted">Sistema Gráfica - &copy;2014 - Todos os direitos reservados.</span>
+        </div>
+        <div class="large-2 columns">
+            Ok
+        </div>
+    </div>
+
     {{ HTML::script('/assets/js/jquery.min.js') }}
     {{ HTML::script('/assets/js/jquery-ui.min.js') }}
-    {{ HTML::script('/assets/js/metro.min.js') }}
+    {{ HTML::script('/assets/js/foundation.min.js') }}
+    {{ HTML::script('/assets/js/modernizr.js') }}
+    {{ HTML::script('/assets/js/responsive-tables.js') }}
+    {{ HTML::script('/assets/js/jquery.dataTables.min.js') }}
+    {{ HTML::script('/assets/js/dataTables.foundation.js') }}
+
+    <script>
+        $(document).foundation();
+    </script>
+
+    @yield('scripts')
+
 </body>
 
 </html>

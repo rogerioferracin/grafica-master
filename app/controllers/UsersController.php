@@ -35,10 +35,30 @@ class UsersController extends \BaseController {
 		$validator = Validator::make(Input::all(), User::$rules);
 
         if($validator->passes()) {
-            return View::make('usuarios.index');
+
+            $user = new User();
+            $user->nome = Input::get('nome');
+            $user->nomeUsuario = Input::get('nomeUsuario');
+            $user->email = Input::get('email');
+            $user->telefone = Input::get('telefone');
+            $user->password = Input::get('password');
+            $user->perfil = Input::get('perfil');
+            $user->ativo = 1;
+            if($user->save()) {
+                return Redirect::to('usuarios')
+                    ->with('message', 'Usuário <b> ' . $user->nome . '</b> criado com sucesso');
+            } else {
+                return Redirect::to('usuarios')
+                    ->with('message', 'Ocorreu um erro ao criar o novo usuário tente novamente mais tarde!');
+
+            }
+
         }
 
-        return View::make('usuarios.create');
+        return Redirect::to('usuarios/create')
+            ->with('message', 'Ocorreram alguns problemas ao validar os dados do usuário')
+            ->withErrors($validator)
+            ->withInput();
 	}
 
 
@@ -62,7 +82,12 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $user = User::findOrFail($id);
+
+        if(is_null($user)) {
+            return Redirect::to('usuarios')->with('message', 'Usuário não encontrado. Tente novamente!');
+        }
+		return View::make('usuarios.edit', compact('user'));
 	}
 
 
@@ -74,7 +99,28 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), User::$rules);
+
+        if($validator->passes()) {
+            $user = User::findOrFail($id);
+            $user->nome = Input::get('nome');
+            $user->nomeUsuario = Input::get('nomeUsuario');
+            $user->email = Input::get('email');
+            $user->telefone = Input::get('telefone');
+            $user->perfil = Input::get('perfil');
+            $user->ativo = 1;
+
+            if(count($user->getDirty()) > 0) {
+                $user->save();
+                return Redirect::to('usuarios')->with('message', 'Usuario <b>'. $user->nome . '</b> atualizado com sucesso!');
+            } else {
+                return Redirect::to('usuarios')->with('message', 'Nenhuma atualização efetuada no usuário!');
+            }
+        }
+        return Redirect::back()
+            ->with('message', 'Ocorreram alguns problemas ao validar os dados do usuário')
+            ->withErrors($validator)
+            ->withInput();
 	}
 
 
