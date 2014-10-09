@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta lang="pt-br">
     <title>Controle de Grafica</title>
     <link rel="shortcut icon" href="{{ URL::to('/assets/images/favicon.ico') }}" />
 
@@ -13,23 +14,26 @@
 </head>
 
 <body class="metro">
-    <div class="container">
+<div class="wrapper" style="width: 950px; margin: 0 auto">
+    <div class="">
         <div class="grid">
             <h1>Gráfica Master</h1>
         </div>
     </div>
 
-    <div class="container">
-        <div class="grid">
+    <div class="">
+        <div class="grid fluid">
             @include('templates.main-menu')
         </div>
     </div>
 
-    <div class="container">
-        @yield('content')
+    <div class="">
+        <div class="grid fluid">
+            @yield('content')
+        </div>
     </div>
 
-    <div class="container">
+    <div class="">
         <div class="grid">
             <div class="row">
                 <div class="span1">
@@ -44,6 +48,7 @@
             </div>
         </div>
     </div>
+</div>
     {{ HTML::script('/assets/js/jquery.min.js') }}
     {{ HTML::script('/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('/assets/js/metro.min.js') }}

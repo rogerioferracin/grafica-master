@@ -11,6 +11,7 @@
                         <a href="#" class="dropdown-toggle"><span class="icon-user"></span> Usuários</a>
                         <ul class="dropdown-menu dark" data-role="dropdown">
                             <li>{{ HTML::link('/usuarios', 'Lista') }}</li>
+                            <li>{{ HTML::link('usuarios/create', 'Novo') }}</li>
                         </ul>
                     </li>
                 </ul>

@@ -23,9 +23,9 @@
                     <td>{{ $usuario->telefone }}</td>
                     <td>
                         @if($usuario->perfil == 1)
-                            <p class="badge-box bg-lightBlue">Adminsitrador</p>
+                            <span class="badge-box bg-lightBlue">Administrador</span>
                         @else
-                            Usuário
+                            <span class="badge-box bg-lightBlue">Usuário</span>
                         @endif
                     </td>
                 </tr>
