@@ -13,6 +13,7 @@
         </div>
     @endif
     {{ Form::open(array('url' => 'usuarios', 'method'=>'post')) }}
+    {{ Form::token() }}
         <div class="row">
             <div class="large-12 columns">
                 {{ Form::label('nome', 'Nome:') }}

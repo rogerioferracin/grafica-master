@@ -30,7 +30,7 @@
                 @endif
             </td>
             <td>
-                {{ html_entity_decode(HTML::linkAction('usuarios.edit', '<span class="fi-page-edit"></span> Atualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}
+                {{ html_entity_decode(HTML::linkAction('usuarios.edit', '<span class="fi-page-edit size-14"></span> Visualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}
             </td>
         </tr>
         @endforeach

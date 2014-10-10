@@ -21,10 +21,17 @@
 
         <div class="row">
             <div class="large-2 columns">
-                {{HTML::image('/assets/images/grafica-logo-200.jpg', 'Sistema Gerenciamento para Gráficas', array('class'=>'img-responsive'))}}
+                <h1>{{HTML::image('/assets/images/grafica-logo-200.jpg', 'Sistema Gerenciamento para Gráficas', array('class'=>'img-responsive'))}}</h1>
             </div>
-            <div class="large-10 columns">
+            <div class="large-8 columns">
                 <h2>Sistema de Gerenciamento para Gráficas</h2>
+            </div>
+            <div class="large-2 columns">
+                @if(Auth::check())
+                    <span>Olá, {{ Auth::user()->nome }}</span>
+                @else
+                    <span>Você não está logado</span>
+                @endif
             </div>
         </div>
 

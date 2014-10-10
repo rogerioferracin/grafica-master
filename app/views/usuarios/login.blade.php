@@ -14,7 +14,7 @@
                     </div>
                 @endif
 
-                {{ Form::open(['url'=>'usuario/change-pass']) }}
+                {{ Form::open(['url'=>'usuario/login']) }}
                 {{ Form::token() }}
                     <div class="row">
                         <div class="large-12 columns">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="row">
                         <div class="large-12 columns">
-                            {{ html_entity_decode(HTML::link('usuarios', '<i class="fi-x-circle size-16"></i> Login', array('class'=>'button small secondary'))) }}
+                            {{Form::button('<i class="fi-unlock size-18"></i> Login', ['class'=>'button radius small right', 'type'=>'submit'])}}
                         </div>
                     </div>
                 {{ Form::close() }}

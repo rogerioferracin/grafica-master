@@ -42,13 +42,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="large-12 columns">
+                <div class="large-6 columns">
+                    <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny dropdown secondary"><i class="fi-widget size-16"></i> Opções </button><br>
+                    <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+                      <li><a href="{{ URL::action('UsersController@changePassView', ['id'=>$user->id]) }}"><i class="fi-shield size-18"></i> Troca senha</a></li>
+                      <li><a href="#" data-reveal-id="modal-1"><i class="fi-x size-18"></i> Exclui</a> </li>
+                      <li>{{ html_entity_decode(HTML::link('#', '<i class="fi-lock size-18"></i> Desativa')) }}</li>
+                    </ul>
+                </div>
+                <div class="large-6 columns">
                     <ul class="button-group radius right">
                         <li>
-                            {{ html_entity_decode(HTML::link('usuarios', '<i class="fi-x-circle"></i> Cancelar', array('class'=>'button small secondary'))) }}
+                            {{ html_entity_decode(HTML::link('usuarios', '<i class="fi-x-circle size-16"></i> Cancelar', array('class'=>'button small secondary'))) }}
                         </li>
                         <li>
-                            {{ Form::button('<i class="fi-save"></i>  Atualizar', array('type'=>'submit','class'=>'primary small button')) }}
+                            {{ Form::button('<i class="fi-save size-16"></i>  Atualizar', array('type'=>'submit','class'=>'primary small button')) }}
                         </li>
                     </ul>
                 </div>
@@ -57,5 +65,30 @@
 
     </div>
 
+</div>
+
+<div class="reveal-modal tiny" id="modal-1" data-reveal>
+    <h4>Exclui usuário: {{ $user->nome }}</h4>
+
+    <p>Confirme sua senha para excluir o usuário selecionado!</p>
+    <div class="row">
+        <div class="large-12">
+            {{Form::open(['route' => ['usuarios.destroy', $user->id], 'method'=>'DELETE'])}}
+            {{ Form::hidden('_method', 'DELETE') }}
+            <div class="row collapse">
+                <div class="small-6 columns">
+                    {{ Form::password('password') }}
+                </div>
+                <div class="small-6 columns">
+                    {{ Form::button('Confirma exclusão', ['class'=>'button alert postfix', 'type' => 'submit']) }}
+                </div>
+            </div>
+        </div>
+        <div class="large-12">
+            <span class="small-text-left">ATENÇÃO. Esta operação não pode ser desfeita!</span>
+        </div>
+    </div>
+
+    <a class="close-reveal-modal">&times;</a>
 </div>
 @stop

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddUsersTable' => $baseDir . '/app/database/migrations/2014_10_10_164425_add_users_table.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
     'Boris\\CLIOptionsHandler' => $vendorDir . '/d11wtq/boris/lib/Boris/CLIOptionsHandler.php',
@@ -28,6 +29,14 @@ return array(
     'ClassPreloader\\Parser\\DirVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/DirVisitor.php',
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
+    'CreateClientesTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_clientes_table.php',
+    'CreateContatosTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_contatos_table.php',
+    'CreateDuplicatasTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_duplicatas_table.php',
+    'CreateEnderecosTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_enderecos_table.php',
+    'CreateFinanceirasTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_financeiras_table.php',
+    'CreateForeignKeys' => $baseDir . '/app/database/migrations/2014_09_30_140732_create_foreign_keys.php',
+    'CreateHistoricoDuplicatasTable' => $baseDir . '/app/database/migrations/2014_09_30_140722_create_historicoDuplicatas_table.php',
+    'CreateUserTable' => $baseDir . '/app/database/migrations/2014_09_30_140856_create_user_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
     'Crypt_Base' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
     'Crypt_Blowfish' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',
@@ -1567,6 +1576,8 @@ return array(
     'System_SSH_Agent_Identity' => $vendorDir . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'User' => $baseDir . '/app/models/User.php',
+    'UserTableSeeder' => $baseDir . '/app/database/seeds/UserTableSeeder.php',
+    'UsersController' => $baseDir . '/app/controllers/UsersController.php',
     'UsuariosController' => $baseDir . '/app/controllers/UsuariosController.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Formatter' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Formatter.php',
