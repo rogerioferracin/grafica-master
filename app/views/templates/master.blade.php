@@ -28,18 +28,20 @@
         <div class="large-2 columns">
             @if(Auth::check())
                 <p>Olá, {{ Auth::user()->nome }}</p>
+                <p>{{ HTML::link('logout', 'Logout') }}</p>
             @else
                 <span>Você não está logado</span>
             @endif
         </div>
     </div>
 
-
+    @if(Auth::check())
     <div id="main-menu">
         <div class="row">
             @include('templates.main-menu')
         </div>
     </div>
+    @endif
 
     @if(Session::has('message'))
     <div class="row" id="message">
@@ -59,9 +61,9 @@
         @yield('content')
     </div>
 
-    <hr>
 
     <div class="row" id="footer">
+        <hr>
         <div class="large-2 columns">
             {{ HTML::image('/assets/images/grafica-logo-100-muted.jpg', 'Logotipo do sistema - rodapé' ,array('class' => 'shadow')) }}
         </div>

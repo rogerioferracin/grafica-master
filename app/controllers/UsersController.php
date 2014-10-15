@@ -7,39 +7,7 @@ class UsersController extends \BaseController
         $this->beforeFilter('csrf', array('on'=>'post'));
     }
 
-    /**
-     * Show login form
-     */
-    public function showLogin()
-    {
-        return View::make('usuarios.login');
-    }
 
-    /**
-     * Do login form
-     */
-    public function doLogin()
-    {
-        $rules = array(
-            'nomeUsuario' => 'required',
-            'password' => 'required',
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-
-        if($validator->passes()) {
-            if(Auth::attempt(array('nomeUsuario'=>Input::get('nomeUsuario'), 'password'=>Input::get('password')))) {
-                return Redirect::to('usuarios');
-            } else {
-                return Redirect::back()
-                    ->with('message', 'Houve uma falha ao tentar logar no sistema. <b>Nome de Usuário</b> ou <b>Senha</b> não conferem')
-                    ->withInput();
-            }
-        } else {
-            return Redirect::back()->with('message', 'Houve uma falha ao tentar logar no sistema.')->withErrors($validator)->withInput();
-        }
-
-    }
 
     /**
      * Display a listing of the resource.

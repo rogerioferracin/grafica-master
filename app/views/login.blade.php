@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="large-12">
+        <hr>
         <div class="large-6 large-offset-3">
         <h3>Efetuar login</h3>
             <div class="panel">
@@ -14,7 +15,7 @@
                     </div>
                 @endif
 
-                {{ Form::open(['url'=>'usuario/login']) }}
+                {{ Form::open(['url'=>'login']) }}
                 {{ Form::token() }}
                     <div class="row">
                         <div class="large-12 columns">
