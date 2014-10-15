@@ -8,14 +8,14 @@
             <div class="panel">
                 @if($errors->has())
                     <div id="erros" data-alert class="alert-box secondary">
-                        @foreach($errors->all() as $erro)
-                            <span class="text-info">{{ $erro }}</span><br>
+                        @foreach($errors->all() as $error)
+                            <span class="text-info">{{ $error }}</span><br>
                         @endforeach
                         <a href="#" class="close">&times;</a>
                     </div>
                 @endif
 
-                {{ Form::open(['url'=>'login']) }}
+                {{ Form::open(['url'=>'login/login']) }}
                 {{ Form::token() }}
                     <div class="row">
                         <div class="large-12 columns">

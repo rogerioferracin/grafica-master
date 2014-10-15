@@ -16,6 +16,6 @@ Route::get('/', array('uses'=>'GraficaController@getIndex'));
 Route::resource('usuarios', 'UsersController');
 Route::get('usuario/{id}/change-pass', ['as'=>'users.changePassView','uses'=>'UsersController@changePassView']);
 Route::post('usuario/change-pass', ['as'=>'users.changePass','uses'=>'UsersController@changePass']);
-Route::get('login', ['as'=>'login','uses'=>'GraficaController@showLogin']);
-Route::post('login', ['as'=>'login','uses'=>'GraficaController@doLogin']);
-Route::get('logout', ['as'=>'logout','uses'=>'GraficaController@doLogout']);
+Route::post('usuario/alterna-status', ['as'=>'users.alterna-status','uses'=>'UsersController@alternaStatus']);
+//Login Controller
+Route::controller('login', 'LoginController');

@@ -5,6 +5,7 @@ class UsersController extends \BaseController
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on'=>'post'));
+        $this->beforeFilter('usuarios');
     }
 
 
@@ -78,6 +79,13 @@ class UsersController extends \BaseController
         //return View::make('usuarios.create');
     }
 
+    public function alternaStatus()
+    {
+        //TODO form não envia pra cá
+        Log::info('Arqui chegou sim!!!!');
+        return Redirect::to('usuarios')
+            ->with('message', 'Aqui chegou!!!');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -154,7 +162,6 @@ class UsersController extends \BaseController
     public function changePassView($id)
     {
         $user = User::findOrFail($id);
-
         return View::make('usuarios.change-pass', compact('user'));
     }
 

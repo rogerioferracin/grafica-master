@@ -70,6 +70,14 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('usuarios', function()
+{
+    if(!Auth::check()) {
+        return Redirect::to('login')
+            ->with('message', 'Você não tem autorização para acessar esta área.Faça o login ou entre em contato com o administrador!');
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter

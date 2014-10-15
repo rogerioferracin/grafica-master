@@ -28,7 +28,7 @@
         <div class="large-2 columns">
             @if(Auth::check())
                 <p>Olá, {{ Auth::user()->nome }}</p>
-                <p>{{ HTML::link('logout', 'Logout') }}</p>
+                <p>{{ HTML::link('login/logout', 'Logout') }}</p>
             @else
                 <span>Você não está logado</span>
             @endif

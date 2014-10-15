@@ -30,7 +30,11 @@
                 @endif
             </td>
             <td>
-                {{ html_entity_decode(HTML::linkAction('usuarios.edit', '<span class="fi-page-edit size-14"></span> Visualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}
+                @if(Auth::user()->perfil == 1 || Auth::user()->id == $usuario->id)
+                    {{ html_entity_decode(HTML::linkAction('usuarios.edit', '<span class="fi-page-edit size-14"></span> Visualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}
+                @else
+                    <a href="#" class="label secondary"><span class="fi-page-edit size-14"></span> Visualiza</a>
+                @endif
             </td>
         </tr>
         @endforeach
