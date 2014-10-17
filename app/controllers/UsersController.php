@@ -15,7 +15,7 @@ class UsersController extends \BaseController
      *
      * @return Response
      */
-    public function index()
+    public function getIndex()
     {
         return View::make('usuarios.index')
             ->with('usuarios', User::all());
@@ -27,7 +27,7 @@ class UsersController extends \BaseController
      *
      * @return Response
      */
-    public function create()
+    public function getCreate()
     {
         return View::make('usuarios.create');
     }
@@ -38,7 +38,7 @@ class UsersController extends \BaseController
      *
      * @return Response
      */
-    public function store()
+    public function postStore()
     {
         $validator = Validator::make(Input::all(), User::$rules);
 
@@ -74,7 +74,7 @@ class UsersController extends \BaseController
      * @param  int $id
      * @return Response
      */
-    public function show($id)
+    public function getShow($id)
     {
         //return View::make('usuarios.create');
     }
@@ -89,11 +89,10 @@ class UsersController extends \BaseController
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public function getEdit($id)
     {
         $user = User::findOrFail($id);
 
@@ -106,11 +105,10 @@ class UsersController extends \BaseController
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function patchUpdate($id)
     {
         $validator = Validator::make(Input::all(), User::$rules);
 
@@ -143,15 +141,22 @@ class UsersController extends \BaseController
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function deleteDestroy($id)
     {
-        //TODO SISTEMA DE LOGIN PARA CONFIRMA EXCLUSÃO FUNCIONAR
+
+        if(empty(Input::get('password'))) {
+            return Redirect::back() -> with('message', 'Insira sua senha para confirmar a exclusão!');
+        }
 
         $user = User::findOrFail($id);
-        $user->delete();
+        if($this->checkPassword(Input::get('password'), Auth::user()->password)) {
+            $user->delete();
 
-        return Redirect::to('usuarios')
-            ->with('message', 'Usuário excluido com sucesso!');
+            return Redirect::to('usuarios')
+                ->with('message', 'Usuário excluido com sucesso!');
+        }
+            return Redirect::back()
+                ->with('message', 'Senha de Admn inválida. Tente novamente!');
     }
 
     /**
@@ -159,7 +164,7 @@ class UsersController extends \BaseController
      * @param $id
      * @return \Illuminate\View\View
      */
-    public function changePassView($id)
+    public function getChangePass($id)
     {
         $user = User::findOrFail($id);
         return View::make('usuarios.change-pass', compact('user'));
@@ -168,11 +173,11 @@ class UsersController extends \BaseController
     /**
      * Check and change user password
      */
-    public function changePass()
+    public function postChangePass()
     {
         $user = User::findOrFail(Input::get('user_id'));
 
-        if ($this->checkPassword(Input::get('password_actual'), $user)) {
+        if ($this->checkPassword(Input::get('password_actual'), $user->password)) {
             $rules = array(
                 'password' => 'required|between:6,12|confirmed|different:password_actual',
                 'password_confirmation' => 'required|between:6,12',
@@ -203,12 +208,12 @@ class UsersController extends \BaseController
     }
 
     /**
-     * @param $user User to have a pass confirmed
+     * @param $hashedPassword User to have a pass confirmed
      * @param $password Password to confirm
      * @return bool return value
      */
-    private function checkPassword($password, $user)
+    private function checkPassword($password, $hashedPassword)
     {
-        return $result = Hash::check($password, $user->password);
+        return $result = Hash::check($password, $hashedPassword);
     }
 }

@@ -24,14 +24,15 @@
             <td>{{ $usuario->telefone }}</td>
             <td class="text-center">
                 @if($usuario->perfil == 1)
-                    <span class="label success radius">Administrador</span>
+                    <span class="label primary radius">Administrador</span>
                 @else
-                    <span class="label primary radius">Usuário</span>
+                    <span class="label success radius">Usuário</span>
                 @endif
             </td>
             <td>
                 @if(Auth::user()->perfil == 1 || Auth::user()->id == $usuario->id)
-                    {{ html_entity_decode(HTML::linkAction('usuarios.edit', '<span class="fi-page-edit size-14"></span> Visualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}
+                    <a href="{{ URL::to('usuarios/edit', ['id'=>$usuario->id]) }}" class="label warning"><i class="fi-pencil size-14"></i> View</a>
+                    {{--{{ html_entity_decode(HTML::linkAction('usuarios/edit', '<span class="fi-page-edit size-14"></span> Visualiza', array('id'=>$usuario->id), ['class'=>'label'])) }}--}}
                 @else
                     <a href="#" class="label secondary"><span class="fi-page-edit size-14"></span> Visualiza</a>
                 @endif

@@ -9,6 +9,7 @@
     {{--CSS Links--}}
     {{ HTML::style('/assets/css/normalize.css') }}
     {{ HTML::style('/assets/css/foundation.min.css') }}
+    {{ HTML::style('/assets/css/surfaceui.css') }}
     {{ HTML::style('/assets/css/foundation-icons.css') }}
     {{ HTML::style('/assets/css/responsive-tables.css') }}
     {{ HTML::style('/assets/css/dataTables.foundation.css') }}
@@ -17,21 +18,22 @@
 </head>
 
 <body>
-
-    <div class="row">
-        <div class="large-2 columns">
+    <div class="row" data-equalizer>
+        <div class="large-2 columns" data-equalizer-watch>
             <h1>{{HTML::image('/assets/images/grafica-logo-200.jpg', 'Sistema Gerenciamento para Gráficas', array('class'=>'img-responsive'))}}</h1>
         </div>
-        <div class="large-8 columns">
+        <div class="large-8 columns" data-equalizer-watch>
             <h2>Sistema de Gerenciamento para Gráficas</h2>
         </div>
-        <div class="large-2 columns">
-            @if(Auth::check())
-                <p>Olá, {{ Auth::user()->nome }}</p>
-                <p>{{ HTML::link('login/logout', 'Logout') }}</p>
-            @else
-                <span>Você não está logado</span>
-            @endif
+        <div class="large-2 columns" data-equalizer-watch>
+            <div class="slab">
+                @if(Auth::check())
+                    <p>Olá, {{ Auth::user()->nome }}</p>
+                    <p>{{ HTML::link('login/logout', 'Logout', ['class'=>'label primary']) }}</p>
+                @else
+                    <p>Você não está logado</p>
+                @endif
+            </div>
         </div>
     </div>
 
@@ -45,14 +47,14 @@
 
     @if(Session::has('message'))
     <div class="row" id="message">
-        <div class="large-1 columns">
-            <i class="fi-info" style="font-size: 2.2em; color: #4528b2"></i>
-        </div>
-        <div class="large-11 columns">
-            <div class="alert-box info" data-alert>
-                {{ Session::get('message') }}
-                <a href="#" class="close">&times;</a>
+        <div class="alert-box clearfix" data-alert>
+            <div class="large-1 columns">
+                {{ HTML::image('assets/images/info-ico.png', 'Informações') }}
             </div>
+            <div class="large-11 columns">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+            <a href="#" class="close">&times;</a>
         </div>
     </div>
     @endif

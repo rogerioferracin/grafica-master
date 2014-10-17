@@ -12,7 +12,7 @@
             <a href="#" class="close">&times;</a>
         </div>
     @endif
-    {{ Form::open(array('url' => 'usuarios', 'method'=>'post')) }}
+    {{ Form::open(array('url' => 'usuarios/store', 'method'=>'post')) }}
     {{ Form::token() }}
         <div class="row">
             <div class="large-12 columns">

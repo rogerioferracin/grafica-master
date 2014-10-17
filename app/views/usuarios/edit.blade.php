@@ -13,7 +13,7 @@
                 <a href="#" class="close">&times;</a>
             </div>
         @endif
-        {{ Form::model($user, ['method' => 'PATCH', 'route' => ['usuarios.update', $user->id]]) }}
+        {{ Form::model($user, ['method' => 'PATCH', 'url' => ['usuarios/update', $user->id]]) }}
             <div class="row">
                 <div class="large-12 columns">
                     {{ Form::label('nome', 'Nome:') }}
@@ -26,8 +26,17 @@
                     {{ Form::text('nomeUsuario') }}
                 </div>
                 <div class="large-6 columns">
-                    {{ Form::label('perfil', 'Perfil:') }}
-                    {{ Form::select('perfil',array('1'=>'Administrador', '2'=>'Usuário'), array('class' => 'disabled')) }}
+                    @if(Auth::user()->perfil == 1)
+                        {{ Form::label('perfil', 'Perfil:') }}
+                        {{ Form::select('perfil',array('1'=>'Administrador', '2'=>'Usuário')) }}
+                    @else
+                        {{ Form::label('perfil', 'Perfil:') }}
+                        @if($user->perfil == 1)
+                            <span class="button primary postfix">Administrador</span>
+                        @else
+                            <span class="button success postfix">Usuário</span>
+                        @endif
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -44,10 +53,13 @@
                 <div class="large-6 columns">
                     <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny dropdown secondary"><i class="fi-widget size-16"></i> Opções </button><br>
                     <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-                      <li><a href="{{ URL::action('UsersController@changePassView', ['id'=>$user->id]) }}"><i class="fi-shield size-18"></i> Troca senha</a></li>
+
+                      <li><a href="{{ URL::to('usuarios/change-pass', ['id'=>$user->id]) }}"><i class="fi-shield size-18"></i> Troca senha</a></li>
+
                       @if(Auth::user()->perfil == 1)
                         <li><a href="#" data-reveal-id="modal-1"><i class="fi-x size-18"></i> Exclui</a> </li>
                         <li><a href="#" data-reveal-id="modal-2"><i class="fi-lock size-18"></i> Desativa/Ativa</a> </li>
+
                       @endif
                     </ul>
                 </div>
@@ -68,14 +80,15 @@
 
 </div>
 
+{{-- ************************* JANELAS MODAL ************************************************* --}}
+
 <div class="reveal-modal tiny" id="modal-1" data-reveal>
     <h4>Exclui usuário: {{ $user->nome }}</h4>
 
     <p>Confirme sua senha para excluir o usuário selecionado!</p>
     <div class="row">
         <div class="large-12">
-            {{Form::open(['route' => ['usuarios.destroy', $user->id], 'method'=>'DELETE'])}}
-            {{ Form::hidden('_method', 'DELETE') }}
+            {{Form::open(['url' => ['usuarios/destroy', $user->id], 'method'=>'DELETE'])}}
             <div class="row collapse">
                 <div class="small-6 columns">
                     {{ Form::password('password') }}
@@ -99,13 +112,13 @@
     <p>Confirme sua senha para ativar/desativar o usuário selecionado!</p>
     <div class="row">
         <div class="large-12">
-            {{Form::open(['route' => ['users.alterna-status', $user->id],  'method'=>'POST'])}}
+            {{ Form::open(['url' => ['alterna-status', $user->id]]) }}
             <div class="row collapse">
                 <div class="small-6 columns">
                     {{ Form::password('password') }}
                 </div>
                 <div class="small-6 columns">
-                    {{ Form::button('Confirma alteração', ['class'=>'button alert postfix', 'type' => 'submit']) }}
+                    {{ Form::button('Confirma alteração', ['class'=>'button alert postfix', 'type' => 'submit', 'id'=> 'btnStatus']) }}
                 </div>
             </div>
         </div>
@@ -114,12 +127,17 @@
     <a class="close-reveal-modal">&times;</a>
 </div>
 
+@stop
 
-
-<script>
-    $(document).ready(function(){
-
-    })
-</script>
-
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#btnStatus').on('click', function(e){
+                $.ajax({
+                    type : 'POST',
+                    url : 'users.alterna-status'
+                })
+            })
+        });
+    </script>
 @stop

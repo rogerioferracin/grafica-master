@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-            {{ Form::open(['url'=>'usuario/change-pass']) }}
+            {{ Form::open(['url'=>'usuarios/change-pass']) }}
                 <div class="row">
                     <div class="large-12 columns">
                         {{ Form::label('password_actual', 'Senha atual:') }}

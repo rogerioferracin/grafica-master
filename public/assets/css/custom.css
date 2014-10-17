@@ -26,4 +26,10 @@
 .size-60 { font-size: 60px; }
 .size-72 { font-size: 72px; }
 
-.text-muted { color: #BBBBBB }
+.text-muted { color: #BBBBBB;}
+
+.text-valign-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
