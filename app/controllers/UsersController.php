@@ -4,7 +4,7 @@ class UsersController extends \BaseController
 {
     public function __construct()
     {
-        $this->beforeFilter('csrf', array('on'=>'post'));
+        //$this->beforeFilter('csrf', array('on'=>'post'));
         $this->beforeFilter('usuarios');
     }
 
@@ -79,10 +79,10 @@ class UsersController extends \BaseController
         //return View::make('usuarios.create');
     }
 
-    public function alternaStatus()
+    public function putAlternaStatus($id)
     {
         //TODO form não envia pra cá
-        Log::info('Arqui chegou sim!!!!');
+        Log::info('Aqui chegou sim!!!!');
         return Redirect::to('usuarios')
             ->with('message', 'Aqui chegou!!!');
     }
@@ -145,7 +145,7 @@ class UsersController extends \BaseController
     {
 
         if(empty(Input::get('password'))) {
-            return Redirect::back() -> with('message', 'Insira sua senha para confirmar a exclusão!');
+            return Redirect::back() -> with('message', 'Senha de administrador é necessária para confirmar a exclusão!');
         }
 
         $user = User::findOrFail($id);
@@ -156,7 +156,7 @@ class UsersController extends \BaseController
                 ->with('message', 'Usuário excluido com sucesso!');
         }
             return Redirect::back()
-                ->with('message', 'Senha de Admn inválida. Tente novamente!');
+                ->with('message', 'Senha de Admin inválida. Tente novamente!');
     }
 
     /**

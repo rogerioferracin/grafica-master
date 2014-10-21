@@ -106,13 +106,16 @@
     <a class="close-reveal-modal">&times;</a>
 </div>
 
+{{-- *************************** MODAL 2 **************************************************** --}}
 <div class="reveal-modal tiny" id="modal-2" data-reveal>
     <h4>Desativa/Ativa usuário: {{ $user->nome }}</h4>
 
     <p>Confirme sua senha para ativar/desativar o usuário selecionado!</p>
     <div class="row">
         <div class="large-12">
-            {{ Form::open(['url' => ['alterna-status', $user->id]]) }}
+            {{ Form::open(
+                array('url' => array('/usuarios/alterna-status', $user->id), 'method'=>'PUT')
+            ) }}
             <div class="row collapse">
                 <div class="small-6 columns">
                     {{ Form::password('password') }}
@@ -127,17 +130,4 @@
     <a class="close-reveal-modal">&times;</a>
 </div>
 
-@stop
-
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#btnStatus').on('click', function(e){
-                $.ajax({
-                    type : 'POST',
-                    url : 'users.alterna-status'
-                })
-            })
-        });
-    </script>
 @stop

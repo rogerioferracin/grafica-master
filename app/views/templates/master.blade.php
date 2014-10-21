@@ -47,14 +47,14 @@
 
     @if(Session::has('message'))
     <div class="row" id="message">
-        <div class="alert-box clearfix" data-alert>
+        <div class="alert-box clearfix" data-alert="close">
             <div class="large-1 columns">
                 {{ HTML::image('assets/images/info-ico.png', 'Informações') }}
             </div>
             <div class="large-11 columns">
                 <p>{{ Session::get('message') }}</p>
+            <a href="#" class="close"><i class="fi-x"></i></a>
             </div>
-            <a href="#" class="close">&times;</a>
         </div>
     </div>
     @endif
